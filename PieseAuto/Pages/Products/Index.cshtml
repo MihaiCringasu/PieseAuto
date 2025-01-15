@@ -1,0 +1,43 @@
+﻿@page "/"
+@model PieseAuto.Pages.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Piese Auto";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="display-4 text-primary">Piese Auto</h1>
+        <a class="btn btn-success btn-lg" asp-page="Create">Create New</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped border rounded">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Book[0].Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Book[0].Category)</th>
+                    <th>@Html.DisplayNameFor(model => model.Book[0].Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.Book[0].PublishingDate)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Book)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PublishingDate)</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm me-2" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                            <a class="btn btn-info btn-sm me-2" asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                            <a class="btn btn-danger btn-sm" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
